@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 require 'stringio'
+require 'strscan'
 
 module Bychar
   VERSION = '1.1.0'

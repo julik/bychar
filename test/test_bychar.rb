@@ -1,4 +1,5 @@
 require 'helper'
+require 'stringio'
 
 class TestBychar < Test::Unit::TestCase
   def test_reads_once

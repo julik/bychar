@@ -1,6 +1,13 @@
 = bychar
 
-Description goes here.
+A simple IO wrapper for libraries that tend to read the IO in the following way:
+
+* Only forward
+* By a single character
+* Without skipping
+
+The wrapper will cache some bytes from the passed IO object which will make parsing
+faster when you advance your parser char by char.
 
 == Contributing to bychar
  

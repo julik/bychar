@@ -1,9 +1,8 @@
 # -*- encoding : utf-8 -*-
-require 'stringio'
 require 'strscan'
 
 module Bychar
-  VERSION = '1.1.0'
+  VERSION = '1.1.1'
 
   # Default buffer size is 512k
   DEFAULT_BUFFER_SIZE = 512 * 1024

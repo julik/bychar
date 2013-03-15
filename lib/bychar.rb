@@ -2,7 +2,7 @@
 require 'strscan'
 
 module Bychar
-  VERSION = '1.1.1'
+  VERSION = '1.2.1'
 
   # Default buffer size is 512k
   DEFAULT_BUFFER_SIZE = 512 * 1024

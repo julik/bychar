@@ -2,10 +2,14 @@
 require 'stringio'
 
 module Bychar
-  VERSION = '1.0.1'
+  VERSION = '1.1.0'
 
   # Default buffer size is 512k
   DEFAULT_BUFFER_SIZE = 512 * 1024
+  
+  # Gets raised when you have exhausted the underlying IO
+  class EOFError < RuntimeError  #:nodoc: all
+  end
   
   # This object helps you build parsers that parse an IO byte by byte without having to
   # read byte by byte.
@@ -15,7 +19,6 @@ module Bychar
   # and ad infinitum until the passed buffer is exhausted
   class Reader
     
-
     def initialize(with_io, buffer_size = DEFAULT_BUFFER_SIZE)
       @io = with_io
       @bufsize = buffer_size
@@ -38,7 +41,18 @@ module Bychar
     def eof?
       (@buf && @buf.eos?) && @io.eof?
     end
-
+    
+    # Since you parse char by char, you will be tempted to do it in a tight loop
+    # and to call eof? on each iteration. Don't. Instead. allow it to raise and do not check.
+    # This takes the profile time down from 36 seconds to 30 seconds for a large file.
+    def read_one_byte!
+      cache if @buf.eos?
+      raise EOFError if @buf.eos?
+      
+      @buf.getch
+    end
+    
+    
     private
 
     def cache

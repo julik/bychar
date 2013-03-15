@@ -45,4 +45,16 @@ class TestBychar < Test::Unit::TestCase
     assert reader.eof?
   end
   
+  def test_read_one_byte_and_raise_at_eof
+    str = "Frobobo"
+    
+    bytes = []
+    assert_raise(Bychar::EOFError) do
+      s = Bychar::Reader.new(StringIO.new(str))
+      loop { bytes << s.read_one_byte! }
+    end
+    
+    assert_equal %w( F r o b o b o ), bytes
+  end
+  
 end

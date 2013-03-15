@@ -52,9 +52,8 @@ module Bychar
       @buf.getch
     end
     
-    
     private
-
+    
     def cache
       data = @io.read(@bufsize)
       @buf = StringScanner.new(data.to_s) # Make nil become ""

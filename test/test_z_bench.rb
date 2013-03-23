@@ -22,7 +22,7 @@ class BenchReader
     File.open(File.dirname(__FILE__) + "/huge_nuke_tcl.tcl") do | io |
       reader = get_reader(io)
       begin
-        loop { reader.read_one_byte! * 2 }
+        loop { reader.read_one_char! * 2 }
       rescue Bychar::EOF
       end
     end

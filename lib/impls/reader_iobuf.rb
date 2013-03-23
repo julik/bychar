@@ -10,7 +10,7 @@ module Bychar
     # Since you parse char by char, you will be tempted to do it in a tight loop
     # and to call eof? on each iteration. Don't. Instead. allow it to raise and do not check.
     # This takes the profile time down from 36 seconds to 30 seconds for a large file.
-    def read_one_byte!
+    def read_one_char!
       cache if @buf.eos?
       raise EOF if @buf.eos?
       

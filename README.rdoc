@@ -12,7 +12,7 @@ Therefore, this gem creates a simple wrapper that you can get like this:
 
   wrapper = Bychar.wrap(io)
   loop do
-    c = wrapper.read_one_byte!
+    c = wrapper.read_one_char!
   rescye Bychar::EOF
     # Your IO ran out
   end

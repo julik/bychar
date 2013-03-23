@@ -6,7 +6,7 @@ module Bychar
       @io = io
     end
   
-    def read_one_byte!
+    def read_one_char!
       b = @io.read(1)
       raise Bychar::EOF if b.nil?
       b

@@ -14,7 +14,7 @@ module Bychar
     # Will transparently read one byte off the contained IO, maintaining the internal cache.
     # If the cache has been depleted it will read a big chunk from the IO and cache it and then
     # return the byte
-    def read_one_byte!
+    def read_one_char!
       if @pos_in_buf > @maximum_pos
         @buf = @io.read(DEFAULT_BUFFER_SIZE)
         raise EOF if @buf.nil?

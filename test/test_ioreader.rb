@@ -19,7 +19,7 @@ class TestBychar < Test::Unit::TestCase
   
   def test_reads_in_64kb_chunks_by_default
     s = StringIO.new("abcd")
-    flexmock(s).should_receive(:read).with(Bychar::ReaderIOBuf::DEFAULT_BUFFER_SIZE).once.and_return("abcd")
+    flexmock(s).should_receive(:read).with(Bychar::DEFAULT_BUFFER_SIZE).once.and_return("abcd")
     reader = Bychar::ReaderIOBuf.new(s)
     reader.read_one_byte!
   end

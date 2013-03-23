@@ -1,7 +1,5 @@
 module Bychar
   class ReaderIOBuf
-    # Default buffer size is 512k
-    DEFAULT_BUFFER_SIZE = 512 * 1024
     
     def initialize(with_io, buffer_size = DEFAULT_BUFFER_SIZE)
       @io = with_io

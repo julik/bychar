@@ -25,19 +25,26 @@ since the reader will raise a Bychar::EOF once the IO is depleted. That exceptio
 
 I told you reading char by char is not the best strategy. On Ruby 1.9:
 
-  Bare IO using read(1):         3.240000   1.790000   5.030000 (  5.035174)
-  Bychar using StringIO:         1.750000   0.000000   1.750000 (  1.748318)
-  Bychar using a String buffer:  1.710000   0.000000   1.710000 (  1.711347)
+  Bare IO using read(1):                                 3.400000   1.900000   5.300000 (  5.300798)
+  Bychar using StringIO:                                 1.790000   0.010000   1.800000 (  1.795277)
+  Bychar using a String buffer:                          1.760000   0.000000   1.760000 (  1.760440)
+  Platform-picked Bychar.wrap(io) Bychar::ReaderStrbuf:  1.770000   0.010000   1.780000 (  1.776339)
 
 while on Ruby 1.8 it is kinda sad:
 
-  Different strategies for reading an IO byte by byte
-  Bare IO using read(1):         2.260000   0.010000   2.270000 (  2.263867)
-  Bychar using StringIO:         2.160000   0.000000   2.160000 (  2.162511)
-  Bychar using a String buffer:  2.890000   0.010000   2.900000 (  2.901297)
+  Bare IO using read(1):                               2.380000   0.000000   2.380000 (  2.393260)
+  Bychar using StringIO:                               2.270000   0.010000   2.280000 (  2.275631)
+  Bychar using a String buffer:                        2.920000   0.000000   2.920000 (  2.924574)
+  Platform-picked Bychar.wrap(io) Bychar::ReaderBare:  2.380000   0.010000   2.390000 (  2.384414)
 
+And on JRuby it's different still:
 
-So on Ruby 1.8 you will get default bypass, and on higher versions a speedier String buffer.
+  Bare IO using read(1):                                1.610000   0.040000   1.650000 (  1.180000)
+  Bychar using StringIO:                                0.730000   0.020000   0.750000 (  0.603000)
+  Bychar using a String buffer:                         1.040000   0.040000   1.080000 (  0.790000)
+  Platform-picked Bychar.wrap(io) Bychar::ReaderIOBuf:  0.560000   0.030000   0.590000 (  0.546000)
+
+As you can see, Bychar will do some work to pick an implementation that makes sense for your Ruby platform.
 
 == Contributing to bychar
  

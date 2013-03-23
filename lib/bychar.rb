@@ -16,7 +16,9 @@ module Bychar
   # Returns a reader object that responds to read_one_char!
   # and raises an EOF if the IO is depleted
   def self.wrap(io)
-    if RUBY_VERSION < '1.9'
+    if RUBY_PLATFORM == 'java'
+      ReaderIOBuf.new(io)
+    elsif RUBY_VERSION < '1.9'
       ReaderBare.new(io)
     else
       ReaderStrbuf.new(io)

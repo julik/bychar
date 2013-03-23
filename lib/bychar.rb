@@ -3,6 +3,7 @@ require 'strscan'
 
 require File.dirname(__FILE__) + "/impls/reader_iobuf"
 require File.dirname(__FILE__) + "/impls/reader_strbuf"
+require File.dirname(__FILE__) + "/impls/reader_bare"
 
 module Bychar
   VERSION = '2.0.0'
@@ -15,6 +16,10 @@ module Bychar
   # Returns a reader object that responds to read_one_char!
   # and raises an EOF if the IO is depleted
   def self.wrap(io)
-    ReaderStrbuf.new(io)
+    if RUBY_VERSION < '1.9'
+      ReaderBare.new(io)
+    else
+      ReaderStrbuf.new(io)
+    end
   end
 end

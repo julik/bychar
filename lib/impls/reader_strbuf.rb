@@ -1,4 +1,7 @@
 module Bychar
+  # A String-bassed intermediary buffer.
+  # We will only use it on 1.9 but we keep it compatible
+  # with 1.8 so that we can benchmark both
   class ReaderStrbuf #:nodoc: :all
     def initialize(with_io)
       @io = with_io
@@ -23,6 +26,7 @@ module Bychar
       char_i = @pos_in_buf
       @pos_in_buf += 1
       
+      # For Ruby 1.8 calling Numeric#chr is faster than allocating a Range for String#slice
       @oneeight ? @buf[char_i].chr : @buf[char_i]
     end
   end

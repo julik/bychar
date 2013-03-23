@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bychar"
-  s.version = "1.2.1"
+  s.version = "2.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Julik Tarkhanov"]
-  s.date = "2013-03-15"
+  s.date = "2013-03-23"
   s.description = " Helps parsing IO char by char "
   s.email = "me@julik.nl"
   s.extra_rdoc_files = [
@@ -25,8 +25,15 @@ Gem::Specification.new do |s|
     "Rakefile",
     "bychar.gemspec",
     "lib/bychar.rb",
+    "lib/impls/reader_bare.rb",
+    "lib/impls/reader_iobuf.rb",
+    "lib/impls/reader_strbuf.rb",
     "test/helper.rb",
-    "test/test_bychar.rb"
+    "test/huge_nuke_tcl.tcl",
+    "test/test_ioreader.rb",
+    "test/test_reader.rb",
+    "test/test_strreader.rb",
+    "test/test_z_bench.rb"
   ]
   s.homepage = "http://github.com/julik/bychar"
   s.licenses = ["MIT"]

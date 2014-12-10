@@ -21,9 +21,9 @@ class BenchReader
   def run
     File.open(File.dirname(__FILE__) + "/huge_nuke_tcl.tcl") do | io |
       reader = get_reader(io)
-      begin
-        loop { reader.read_one_char! * 2 }
-      rescue Bychar::EOF
+      str = []
+      while c = reader.read_one_char
+        str << (c * 2)
       end
     end
   end

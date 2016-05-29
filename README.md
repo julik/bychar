@@ -20,7 +20,16 @@ faster when you advance your parser char by char.
 
 ## Performance
 
-I told you reading char by char is not the best strategy. On Ruby 1.9:
+I told you reading char by char is not the best strategy. 
+
+on Ruby 2.1.5
+
+    Bare IO using read(1):                            3.280000   2.770000   6.050000 (  6.069370)
+    Bychar using StringIO:                            1.300000   0.040000   1.340000 (  1.341242)
+    Bychar using a String buffer:                     1.180000   0.020000   1.200000 (  1.211232)
+    Platform-picked Bychar.wrap(io) Bychar::Wrapper:  1.280000   0.020000   1.300000 (  1.300232)
+
+..on Ruby 1.9:
 
     Bare IO using read(1):                                 3.400000   1.900000   5.300000 (  5.300798)
     Bychar using StringIO:                                 1.790000   0.010000   1.800000 (  1.795277)
